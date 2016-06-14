@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="struts2" namespace="/" extends="struts-default">
+		<action name="login" class="com.activityweb.action.login.Login">
+			<result name="success">index.jsp</result>
+			<result name="input">/User/login.jsp</result>
+			<result name="error">/User/login.jsp</result>
+		</action>
+		<action name="cosultRec" class="com.activityweb.action.consultRecords.ConsultRec">
+			<result name="success">/User/consultres.jsp</result>
+		</action>
+	</package>
+</struts>    
