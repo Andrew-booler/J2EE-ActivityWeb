@@ -38,12 +38,20 @@ public class RecordDaoImpl implements RecordDao {
 			return null;
 		}
         
+        
     }
-
-
-
-
-    
-
+	@Override
+    public int getLargestId(){
+    	try{
+    		PreparedStatement sta=getConnection().prepareStatement("SELECT MAX(ID) FROM RECORDS");
+    		ResultSet SQLres=sta.executeQuery();
+    		SQLres.next();
+    		return Integer.parseInt(SQLres.getString("ID"));
+    		
+    	} catch (SQLException e) {
+			System.out.println(e);
+			return -1;
+		}
+    }
 
 }
