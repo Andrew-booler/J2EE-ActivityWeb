@@ -31,9 +31,15 @@ public class ConsultRec extends ActionSupport{
 	
 	public String execute(){
 		dao=new RecordDaoImpl();
-		record=dao.getRecordById("1");
-		recordlist=new ArrayList<Record>();
-		recordlist.add(record);
+		int numOfRecord = dao.getLargestId();
+		for(int i = 1; i <= numOfRecord;i++ )
+		{
+			record=dao.getRecordById(String.valueOf(i));
+			record.setInfolist();//make id amount...into a list
+			recordlist=new ArrayList<Record>();
+			recordlist.add(record);
+		}
+		
 		return SUCCESS;
 	}
 }
