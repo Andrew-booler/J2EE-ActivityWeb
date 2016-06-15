@@ -37,10 +37,12 @@
 			<td><span>日期</span></td>
 			<td><span>备注</span></td>
 		</tr>
-		<s:iterator value="recordlist" status="recordlistStatus">
-			<tr>
-				<td><s:property /></td>
-			</tr>
+		<s:iterator value="recordlist" id = "record">
+			<s:iterator value = "#record.getInfolist()" id ="re">
+				<tr>
+				<td><s:property value = '#re'/></td>
+				</tr>
+			</s:iterator>
 		</s:iterator>
 	</table>
 
