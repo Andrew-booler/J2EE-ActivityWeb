@@ -26,6 +26,15 @@ public interface RecordDao {
 	     */
 		
 	    public abstract  Record getRecordById(String id);
+		
+	    /**
+	     * 返回主键的最大值
+	     * 
+	     * 
+	     * @return -1时表示异常，
+	     * @return int
+	     */
+	    public int getLargestId();
 
 	    /**
 	     * 根据PK列表返回实体类列表
