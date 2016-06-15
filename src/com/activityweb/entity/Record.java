@@ -1,6 +1,9 @@
 package com.activityweb.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 
@@ -10,6 +13,7 @@ public class Record {
 	private int io;
 	private Date occurence;
 	private String note;
+	private List<String> infolist;
 	public double getAmount() {
 		return amount;
 	}
@@ -39,5 +43,18 @@ public class Record {
 	}
 	public void setNote(String note) {
 		this.note = note;
+	}
+	public void setInfolist()
+	{
+		infolist = new ArrayList<String>();
+		infolist.add(id);
+		infolist.add(String.valueOf(amount));
+		infolist.add(String.valueOf(io));
+		infolist.add( new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(occurence));
+		infolist.add(note);
+	}
+	public List<String> getInfolist()
+	{
+		return infolist;
 	}
 }
