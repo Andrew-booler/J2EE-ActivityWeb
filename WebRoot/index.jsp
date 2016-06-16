@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,5 +23,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     This is my JSP page. <br>
+	<s:if test="user!=null">
+		<s:hidden value="user.id"/><br>
+		<s:property value="user.showname"/><br>
+		<s:property value="user.email"/><br>
+	</s:if>
+	<s:else>
+    <s:a href="jump"><input type="button" value="登录"/></s:a>
+	</s:else>
   </body>
 </html>

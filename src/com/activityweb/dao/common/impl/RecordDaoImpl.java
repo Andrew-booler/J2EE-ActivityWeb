@@ -16,7 +16,7 @@ public class RecordDaoImpl implements RecordDao {
 	private Record record;
 
 
-	public Connection getConnection(){
+	private Connection getConnection(){
 		return Connector.getConnector().getconntion();
 	}
 	

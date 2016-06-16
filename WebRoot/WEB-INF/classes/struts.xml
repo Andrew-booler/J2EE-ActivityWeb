@@ -8,6 +8,10 @@
 			<result name="input">/User/login.jsp</result>
 			<result name="error">/User/login.jsp</result>
 		</action>
+		<action name="jump" class="com.activityweb.action.login.Login" method="jump">
+			<result name="success">/User/login.jsp</result>
+			<result name="input">/User/login.jsp</result>
+		</action>
 		<action name="consultRec" class="com.activityweb.action.consultRecords.ConsultRec">
 			<result name="success">/User/consultres.jsp</result>
 		</action>

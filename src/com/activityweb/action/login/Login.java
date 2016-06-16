@@ -1,6 +1,8 @@
 package com.activityweb.action.login;
 
-import com.activityweb.dao.common.RecordDao;
+import com.activityweb.dao.common.UserDao;
+import com.activityweb.dao.common.impl.UserDaoImpl;
+import com.activityweb.entity.User;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Login extends ActionSupport{
@@ -10,7 +12,13 @@ public class Login extends ActionSupport{
 	private static final long serialVersionUID = -4543686407480617730L;
 	private String username;
 	private String password;
-	private RecordDao dao;
+	private User user;
+	private UserDao userDao;
+	public Login() {
+		super();
+		this.userDao = new UserDaoImpl();
+		this.user=new User();
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -23,33 +31,51 @@ public class Login extends ActionSupport{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public void setSubmit(String submit){
+	}
+	public UserDao getUserDao() {
+		return userDao;
+	}
+	public void setRecordDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
 	public String execute() throws Exception{
-		if(!username.equals("admin"))
+		if(username.isEmpty()){
+			super.addFieldError("username", "请输入用户名！");
+			return ERROR;
+		}
+		if(password.isEmpty()){
+			super.addFieldError("password", "请输入密码！");
+			return ERROR;
+		}
+		if(!userDao.validateUsername(username))
 		{
 			super.addFieldError("username", "用户不存在！");
 			return ERROR;
 		}
-		if(!password.equals("admin"))
+		user=userDao.validateUser(username, password);
+		if(user.getId().isEmpty())
 		{
 			super.addFieldError("password", "密码不正确！");
 			return ERROR;
 		}
+		
 		return SUCCESS;
 	}
 	
-	public void validate(){
-		if((null==username)||(0==username.length())){
-			super.addActionError("用户名不能为空");
-		}
-		if((null==password)||(0==password.length())){
-			super.addActionError("密码不能为空");
-		}
+
+	
+	public String jump() throws Exception{
+
+		return SUCCESS;
 	}
-	public RecordDao getDao() {
-		return dao;
-	}
-	public void setDao(RecordDao dao) {
-		this.dao = dao;
-	}
+
+
 
 }
