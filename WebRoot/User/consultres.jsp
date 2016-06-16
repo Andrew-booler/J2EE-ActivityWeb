@@ -37,12 +37,14 @@
 			<td><span>日期</span></td>
 			<td><span>备注</span></td>
 		</tr>
-		<s:iterator value="recordlist" id = "record">
-			<s:iterator value = "#record.getInfolist()" id ="re">
+		<s:iterator value="recordlist" id = "record">			
 				<tr>
-				<td><s:property value = '#re'/></td>
+				<td><s:property value = '#record.record.id'/></td>
+				<td><s:property value = '#record.ioName'/></td>
+				<td><s:property value = '#record.record.amount'/></td>
+				<td><s:property value = '#record.occurenceView'/></td>
+				<td><s:property value = '#record.record.note'/></td>
 				</tr>
-			</s:iterator>
 		</s:iterator>
 	</table>
 

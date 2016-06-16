@@ -1,5 +1,6 @@
 package com.activityweb.action.login;
 
+import com.activityweb.dao.common.RecordDao;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Login extends ActionSupport{
@@ -9,6 +10,7 @@ public class Login extends ActionSupport{
 	private static final long serialVersionUID = -4543686407480617730L;
 	private String username;
 	private String password;
+	private RecordDao dao;
 	public String getUsername() {
 		return username;
 	}
@@ -42,6 +44,12 @@ public class Login extends ActionSupport{
 		if((null==password)||(0==password.length())){
 			super.addActionError("ÃÜÂë²»ÄÜÎª¿Õ");
 		}
+	}
+	public RecordDao getDao() {
+		return dao;
+	}
+	public void setDao(RecordDao dao) {
+		this.dao = dao;
 	}
 
 }
