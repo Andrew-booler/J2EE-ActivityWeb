@@ -39,11 +39,8 @@ public class Login extends ActionSupport{
 	}
 	public void setSubmit(String submit){
 	}
-	public UserDao getUserDao() {
-		return userDao;
-	}
-	public void setRecordDao(UserDao userDao) {
-		this.userDao = userDao;
+	public String regist() throws Exception{
+		return INPUT;
 	}
 	public String execute() throws Exception{
 		if(username.isEmpty()){
@@ -60,7 +57,7 @@ public class Login extends ActionSupport{
 			return ERROR;
 		}
 		user=userDao.validateUser(username, password);
-		if(user.getId().isEmpty())
+		if(null==user)
 		{
 			super.addFieldError("password", "ÃÜÂë²»ÕýÈ·£¡");
 			return ERROR;

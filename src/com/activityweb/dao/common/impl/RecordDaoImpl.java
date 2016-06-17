@@ -58,7 +58,7 @@ public class RecordDaoImpl implements RecordDao {
 		}
     }
 
-
+	
 
 	public Record getRecord() {
 		return record;

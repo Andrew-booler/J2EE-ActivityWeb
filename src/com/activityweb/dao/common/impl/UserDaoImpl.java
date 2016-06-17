@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
 			stat.setString(2,password);
 			ResultSet SQLres=stat.executeQuery();
 			SQLres.last();
-			if(0<=SQLres.getRow()){
+			if(0<SQLres.getRow()){
 				User user=new User();
 				user.setShowname(SQLres.getString("SHOWNAME"));
 				user.setEmail(SQLres.getString("EMAIL"));
@@ -80,7 +80,7 @@ public class UserDaoImpl implements UserDao {
 			stat.setString(1,username);
 			ResultSet SQLres=stat.executeQuery();
 			SQLres.last();
-			if(0<=SQLres.getRow()){
+			if(0<SQLres.getRow()){
 				return true;
 			}else
 			{
@@ -91,6 +91,37 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+
+	@Override
+	public String addUser(User user) {
+		// TODO Auto-generated method stub
+		String sqlComm="INSERT INTO USERS (USERNAME,PASSWORD,EMAIL,SHOWNAME) VALUES (?,?,?,?)";
+		String sqlComm1="SELECT * FROM USERS WHERE USERNAME=? AND PASSWORD=?";
+		try {
+			PreparedStatement stat=getConnection().prepareStatement(sqlComm);
+			stat.setString(1,user.getUsername());
+			stat.setString(2,user.getPassword());
+			stat.setString(3, user.getEmail());
+			stat.setString(4,user.getShowname());
+			int SQLres=stat.executeUpdate();
+			if(0<SQLres){
+				PreparedStatement stat1=getConnection().prepareStatement(sqlComm1);
+				stat1.setString(1,user.getUsername());
+				stat1.setString(2,user.getPassword());
+				ResultSet SQLres1=stat1.executeQuery();
+				SQLres1.last();
+				return SQLres1.getString("ID");
+			}else
+			{
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}
+		return null;
 	}
 
 

@@ -6,4 +6,5 @@ public interface UserDao {
 	public abstract User getUserById(String id);
 	public abstract User validateUser(String username,String password);
 	public abstract boolean validateUsername(String username);
+	public abstract String addUser(User user);
 }
