@@ -1,35 +1,23 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'login.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
-  </head>
-  
-  <body>
-    This is my JSP page. <br>
-    <s:form name="login_fm" action="login">
-    <s:textarea name="username" label="用户名"></s:textarea>
-    <s:textarea name="password" label="密码"></s:textarea>
-    <s:submit label="登录"></s:submit>
+	<s:if test="user.id!=null">
+		<s:hidden value="user.id"/><br>
+		<font style="color: white;
+		vertical-align: middle;
+		text-align:center;
+		position: absolute;
+		left: 20%;
+		top: 0px;"><s:property value="user.showname"/><span>,welcome</span><br>
+		<s:property value="user.email"/></font><br>
+	</s:if>
+	<s:else>
+	<s:form name="login_fm" action="login" autocomplete="off">
+	<s:textfield name="username" label="用户名" autocomplete="off" />
+    	<s:password name="password" label="密码" autocomplete="off"/>
+		<s:submit name="login"  value="登录"/>
+		<s:submit name="regist"  value="注册" method="regist"/>
     </s:form>
+
     <s:actionerror/>
-  </body>
-</html>
+	</s:else>
+    

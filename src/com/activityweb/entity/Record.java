@@ -1,15 +1,22 @@
 package com.activityweb.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 
 public class Record {
 	private String id;
+	private String userId;
 	private double amount;
+	//收入、支出，0代表支出，1代表收入；
 	private int io;
 	private Date occurence;
 	private String note;
+
+	
 	public double getAmount() {
 		return amount;
 	}
@@ -21,6 +28,12 @@ public class Record {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public int getIo() {
 		return io;
@@ -40,4 +53,5 @@ public class Record {
 	public void setNote(String note) {
 		this.note = note;
 	}
+
 }
