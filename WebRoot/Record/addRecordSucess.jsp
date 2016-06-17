@@ -1,5 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>addRecord</title>
+    <title>My JSP 'addRecordSucess.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -24,17 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	This is my JSP page.
-	<br>
-       <h1 class="title">添加记录</h1><br>
-    <s:form name="addRecord_fm" action="addRecord" autocomplete="off">
-    	<s:textfield name="id" label = "ID"/>
-    	<s:textfield name="io" label="收入/支出"/>
-    	<s:textfield name="amount" label="账户金额"/>
-    	<s:textfield name="occurence" label="时间"/>
-    	<s:textfield name="note" label="注释"/>
-    	<s:submit value="添加"/>
-   </s:form>
-       <s:actionerror/>
+    Add record success <br>
   </body>
 </html>

@@ -1,15 +1,11 @@
 package com.activityweb.action.addReord;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.activityweb.dao.common.RecordDao;
-import com.activityweb.dao.common.UserDao;
 import com.activityweb.dao.common.impl.RecordDaoImpl;
-import com.activityweb.dao.common.impl.UserDaoImpl;
 import com.activityweb.entity.Record;
-import com.activityweb.vm.record.RecordVM;
 
 
 public class AddRecord extends ActionSupport {
@@ -30,13 +26,16 @@ public class AddRecord extends ActionSupport {
 	public void setRecord(){
 		record.setId(id);	
 		record.setIo(io);
-		record.setUserId();      //暂时不知道如何获得
+		record.setUserId("10");      //暂时不知道如何获得
 		record.setAmount(amount);
 		record.setOccurence(occurence);
 		record.setNote(note);
 	}
 	public void setId(String id){
 		this.id =id;
+	}
+	public void setNote(String note){
+		this.note = note;
 	}
 	public void setIo(String io){
 		this.io = Integer.parseInt(io);
@@ -54,13 +53,15 @@ public class AddRecord extends ActionSupport {
 			return ERROR;
 		}
 	
-		if(note.isEmpty()){
+		if(note==null){
 			super.addFieldError("note", "请输入注释！");
 			return ERROR;
 		}
 		this.setRecord();
-		recordDao.setRecordIntoDB(record);
-		return SUCCESS;
+		if(recordDao.setRecordIntoDB(record) == -1)
+			return ERROR;
+		else
+			return SUCCESS;
 	}
 
 }

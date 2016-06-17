@@ -74,17 +74,18 @@ public class RecordDaoImpl implements RecordDao {
 	
 	public int setRecordIntoDB(Record record){
         try {
-			PreparedStatement stat=getConnection().prepareStatement("INSERT INTO RECORDS (ID,USERID,IO,AMOUNT,OCCURENCE,NOTE) VALUES(?,?,?,?,?,?) ");
-			stat.setInt( 1,Integer.parseInt(record.getId()) ); 
-			stat.setInt( 2,Integer.parseInt(record.getUserId()) );
-			stat.setInt(3,record.getIo());
-			stat.setDouble(4,record.getAmount());
-			stat.setDate(5, (Date) record.getOccurence() );   
-			stat.setString(6,record.getNote());
+			PreparedStatement stat=getConnection().prepareStatement("INSERT INTO RECORDS (USERID,IO,AMOUNT,OCCURENCE,NOTE) VALUES(?,?,?,?,?) ");
+ 
+			stat.setInt( 1,Integer.parseInt(record.getUserId()) );
+			stat.setInt(2,(int)record.getIo());
+			stat.setDouble(3,record.getAmount());
+			stat.setDate(4, (Date) record.getOccurence() );   
+			String s = record.getNote();
+			stat.setString(5,s);
 			
-			ResultSet SQLres=stat.executeQuery();
+			@SuppressWarnings("unused")
+			int SQLres=stat.executeUpdate();
 			stat.close();
-			SQLres.close();
 			return 0;
 		} catch (SQLException e) {
 			System.out.println(e);

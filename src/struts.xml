@@ -22,8 +22,9 @@
 		<action name="consultRec" class="com.activityweb.action.consultRecords.ConsultRec">
 			<result name="success">/Record/consultres.jsp</result>
 		</action>
-		<action name = "addRecord" class="package com.activityweb.action.addReord.AddRecord">
-			<result name ="sucess">/Record/consultres.jsp</result>
+		<action name = "addRecord" class="com.activityweb.action.addReord.AddRecord">
+			<result name ="success">/Record/addRecordSucess.jsp</result>
+			<result name ="error">index.jsp</result>
 		</action>
 	</package>
 </struts>    
