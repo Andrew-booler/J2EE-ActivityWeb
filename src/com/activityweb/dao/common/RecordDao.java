@@ -25,7 +25,14 @@ public interface RecordDao {
 	     * @return int
 	     */
 	    public int getLargestId();
-
+	    /**
+	     * 根据PK列表返回实体类列表
+	     * 
+	     *
+	     * @param record 记录
+	     * @return 
+	     */
+	    public int setRecordIntoDB(Record record);
 	    /**
 	     * 根据PK列表返回实体类列表
 	     * 
@@ -33,6 +40,7 @@ public interface RecordDao {
 	     *        <主键>
 	     * @return List<实体>
 	     */
+
 /*	    public abstract List<Record> getList(List<String> ids);
 
 	    *//**
