@@ -1,5 +1,7 @@
 package com.activityweb.dao.common;
 
+import java.util.List;
+
 import com.activityweb.entity.Record;
 
 
@@ -16,6 +18,14 @@ public interface RecordDao {
 	     */
 		
 	    public abstract  Record getRecordById(String id);
+	    
+		/**
+		 * 按照用户ID取实体
+		 * @param userId
+		 * @return
+		 */
+	    
+		public abstract List<Record> getRecordByUserId(String userId);
 		
 	    /**
 	     * 返回主键的最大值

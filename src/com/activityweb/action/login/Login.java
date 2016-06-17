@@ -5,6 +5,10 @@ import com.activityweb.dao.common.impl.UserDaoImpl;
 import com.activityweb.entity.User;
 import com.opensymphony.xwork2.ActionSupport;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 public class Login extends ActionSupport{
 	/**
 	 * 
@@ -14,8 +18,11 @@ public class Login extends ActionSupport{
 	private String password;
 	private User user;
 	private UserDao userDao;
+	private HttpServletRequest request;
+	
 	public Login() {
 		super();
+		request=ServletActionContext.getRequest();
 		this.userDao = new UserDaoImpl();
 		this.user=new User();
 	}
@@ -40,37 +47,43 @@ public class Login extends ActionSupport{
 	public void setSubmit(String submit){
 	}
 	public String regist() throws Exception{
+		request.setAttribute("status", "component/content.jsp");
 		return INPUT;
 	}
 	public String execute() throws Exception{
 		if(username.isEmpty()){
 			super.addFieldError("username", "请输入用户名！");
+			request.setAttribute("status", "component/content.jsp");
 			return ERROR;
 		}
 		if(password.isEmpty()){
 			super.addFieldError("password", "请输入密码！");
+			request.setAttribute("status", "component/content.jsp");
 			return ERROR;
 		}
 		if(!userDao.validateUsername(username))
 		{
 			super.addFieldError("username", "用户不存在！");
+			request.setAttribute("status", "component/content.jsp");
 			return ERROR;
 		}
 		user=userDao.validateUser(username, password);
 		if(null==user)
 		{
 			super.addFieldError("password", "密码不正确！");
+			request.setAttribute("status", "component/content.jsp");
 			return ERROR;
 		}
-		
+		request.setAttribute("status", "component/content.jsp");
+		request.setAttribute("userid", user.getId());
 		return SUCCESS;
 	}
 	
-
-	
-	public String jump() throws Exception{
-
-		return SUCCESS;
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 
 

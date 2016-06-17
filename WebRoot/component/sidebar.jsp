@@ -10,11 +10,12 @@
       	<li>
       		<jsp:include page="${ContextPath}/User/login.jsp"></jsp:include>
       	</li>
-        <li><a href="index.action">主页</a>
+        <li><a href="index">主页</a>
         </li>
-        <li>我的记账本
+        <li><a>我的记账本</a>
         	<ul>
-        		<li><a href=""
+        		<li><a href="consultRec!addRecord.action">添加记录</a></li>
+        		<li><a href="consultRec?userid=${user.id}">查询记账本</a></li>
         	</ul>
         </li>
         <li><a href="contact.jsp">Contact Us</a></li>

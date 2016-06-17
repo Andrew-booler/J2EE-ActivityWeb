@@ -5,6 +5,10 @@ import com.activityweb.dao.common.impl.UserDaoImpl;
 import com.activityweb.entity.User;
 import com.opensymphony.xwork2.ActionSupport;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 public class Regist extends ActionSupport{
 	/**
 	 * 
@@ -17,8 +21,10 @@ public class Regist extends ActionSupport{
 	private String password_again;
 	private String email;
 	private String showname;
+	private HttpServletRequest request;
 	public Regist(){
 		super();
+		request=ServletActionContext.getRequest();
 		user=new User();
 		userDao=new UserDaoImpl();
 	}
@@ -38,23 +44,28 @@ public class Regist extends ActionSupport{
 	public String execute() throws Exception{
 		if(username.isEmpty()){
 			super.addFieldError("username", "请输入用户名！");
+			request.setAttribute("status", "User/regist.jsp");
 			return ERROR;
 		}
 		if(password.isEmpty()){
 			super.addFieldError("password", "请输入密码！");
+			request.setAttribute("status", "User/regist.jsp");
 			return ERROR;
 		}
 		if(!password.equals(password_again)){
 			super.addFieldError("password_again", "两次输入的密码不一致！");
+			request.setAttribute("status", "User/regist.jsp");
 			return ERROR;
 		}
 		if(showname.isEmpty()){
 			super.addFieldError("showname", "请输入昵称！");
+			request.setAttribute("status", "User/regist.jsp");
 			return ERROR;
 		}
 		if(userDao.validateUsername(username))
 		{
 			super.addFieldError("username", "用户名已存在！");
+			request.setAttribute("status", "User/regist.jsp");
 			return ERROR;
 		}
 		user.setEmail(email);
@@ -65,8 +76,10 @@ public class Regist extends ActionSupport{
 		if(null==user.getId())
 		{
 			super.addFieldError("username", "注册失败");
+			request.setAttribute("status", "User/regist.jsp");
 			return ERROR;
 		}
+		request.setAttribute("status", "index");
 		return SUCCESS;
 	}
 	public User getUser() {
@@ -92,5 +105,11 @@ public class Regist extends ActionSupport{
 	}
 	public void setShowname(String showname) {
 		this.showname = showname;
+	}
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 }

@@ -1,12 +1,15 @@
 package com.activityweb.dao.common.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import com.activityweb.connector.Connector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import com.activityweb.dao.common.RecordDao;
 import com.activityweb.entity.Record;
 
@@ -59,6 +62,33 @@ public class RecordDaoImpl implements RecordDao {
     }
 
 	
+
+	@Override
+	public List<Record> getRecordByUserId(String userId) {
+		// TODO Auto-generated method stub
+		 try {
+				PreparedStatement stat=getConnection().prepareStatement("SELECT * FROM RECORDS WHERE USERID=?");
+				stat.setString(1,userId);
+				ResultSet SQLres=stat.executeQuery();
+				List<Record> list=new ArrayList<Record>();
+				while(SQLres.next()){
+				record=new Record();
+				record.setAmount(SQLres.getDouble("AMOUNT"));
+				record.setId(SQLres.getString("ID"));
+				record.setIo(SQLres.getInt("IO"));
+				record.setNote(SQLres.getString("NOTE"));
+				record.setOccurence(SQLres.getDate("OCCURENCE"));
+				list.add(record);
+				}
+				stat.close();
+				SQLres.close();
+				return list;
+			} catch (SQLException e) {
+				System.out.println(e);
+				return null;
+			}
+	}
+
 
 	public Record getRecord() {
 		return record;

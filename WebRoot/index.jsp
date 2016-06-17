@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	<div id="wrapper">
     <jsp:include page="component/sidebar.jsp" flush="true"/>
-    <jsp:include page="component/content.jsp" flush="true"/>
+    <jsp:include page="${status}" flush="true"/>
     </div>
     <div class="clear"></div>
 <script type="text/javascript" src="style/js/scripts.js"></script>

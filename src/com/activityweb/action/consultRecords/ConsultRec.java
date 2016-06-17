@@ -9,22 +9,30 @@ import com.activityweb.dao.common.impl.RecordDaoImpl;
 import com.activityweb.entity.Record;
 import com.activityweb.vm.record.RecordVM;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 public class ConsultRec extends ActionSupport{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6405977346000971981L;
-	public ConsultRec() {
-		super();
-		this.dao = new RecordDaoImpl();
-		this.record = new Record();
-		this.recordlist = new ArrayList<RecordVM>();
-		this.recordVM = new RecordVM();
-	}
 	private RecordDao dao;
 	private Record record;
-	private List<RecordVM> recordlist;
+	private String userid;
+	private List<Record> recordlist;
 	private RecordVM recordVM;
+	private List<RecordVM> recordVMlist;
+	private HttpServletRequest request;
+	public ConsultRec() {
+		super();
+		request=ServletActionContext.getRequest();
+		this.dao = new RecordDaoImpl();
+		this.record = new Record();
+		this.recordVMlist = new ArrayList<RecordVM>();
+		this.recordVM = new RecordVM();
+	}
 	public RecordDao getDao() {
 		return dao;
 	}
@@ -39,20 +47,44 @@ public class ConsultRec extends ActionSupport{
 	}
 	
 	public String execute(){
-		int numOfRecord = dao.getLargestId();
-		for(int i = 1; i <= numOfRecord;i++ )
+		if(userid.isEmpty())
 		{
-			record=dao.getRecordById(String.valueOf(i));
-			recordVM.setRecord(record);
-			recordlist.add(recordVM);
+			request.setAttribute("status","component/content.jsp");
+			return SUCCESS;
 		}
-		
+		recordlist=dao.getRecordByUserId(userid);
+		for(int i= 0;i<recordlist.size();i++)
+		{
+			record=recordlist.get(i);
+			recordVM=new RecordVM();
+			recordVM.setRecord(record);
+			recordVMlist.add(recordVM);
+		}
+		request.setAttribute("status","User/consultres.jsp");
 		return SUCCESS;
 	}
-	public List<RecordVM> getRecordlist() {
+	public List<Record> getRecordlist() {
 		return recordlist;
 	}
-	public void setRecordlist(List<RecordVM> recordlist) {
+	public void setRecordlist(List<Record> recordlist) {
 		this.recordlist = recordlist;
+	}
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public List<RecordVM> getRecordVMlist() {
+		return recordVMlist;
+	}
+	public void setRecordVMlist(List<RecordVM> recordVMlist) {
+		this.recordVMlist = recordVMlist;
 	}
 }

@@ -8,19 +8,18 @@
 		</action>
 		<action name="login" class="com.activityweb.action.login.Login">
 			<result name="success">index.jsp</result>
-			<result name="input">/User/regist.jsp</result>
+			<result name="input">index.jsp</result>
 			<result name="error">index.jsp</result>
 		</action>
-		<action name="jump" class="com.activityweb.action.login.Login" method="jump">
-			<result name="success">/User/login.jsp</result>
-			<result name="input">/User/login.jsp</result>
-		</action>
+
 		<action name="regist_new" class="com.activityweb.action.regist.Regist">
 			<result name="success">index.jsp</result>
-			<result name="error">/User/regist.jsp</result>
+			<result name="error">index.jsp</result>
 		</action>
 		<action name="consultRec" class="com.activityweb.action.consultRecords.ConsultRec">
-			<result name="success">/User/consultres.jsp</result>
+			<result name="success">index.jsp</result>
 		</action>
+		
+
 	</package>
 </struts>    

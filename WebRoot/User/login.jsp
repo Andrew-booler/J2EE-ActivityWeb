@@ -14,7 +14,7 @@
 	<s:form name="login_fm" action="login" autocomplete="off">
 	<s:textfield name="username" label="用户名" autocomplete="off" />
     	<s:password name="password" label="密码" autocomplete="off"/>
-		<s:submit name="login"  value="登录"/>
+		<s:submit value="登录"/>
 		<s:submit name="regist"  value="注册" method="regist"/>
     </s:form>
 
