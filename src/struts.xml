@@ -20,7 +20,10 @@
 			<result name="error">/User/regist.jsp</result>
 		</action>
 		<action name="consultRec" class="com.activityweb.action.consultRecords.ConsultRec">
-			<result name="success">/User/consultres.jsp</result>
+			<result name="success">/Record/consultres.jsp</result>
+		</action>
+		<action name = "addRecord" class="package com.activityweb.action.addReord.AddRecord">
+			<result name ="sucess">/Record/consultres.jsp</result>
 		</action>
 	</package>
 </struts>    
