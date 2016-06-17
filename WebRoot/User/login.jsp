@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 	<s:if test="user.id!=null">
-		<s:hidden value="user.id"/><br>
+		<s:hidden id="userid" name="userid" value="user.id"/><br>
 		<font style="color: white;
 		vertical-align: middle;
 		text-align:center;
