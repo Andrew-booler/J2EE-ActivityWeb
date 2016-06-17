@@ -1,12 +1,14 @@
 package com.activityweb.dao.common.impl;
 
-import java.util.List;
+
 import com.activityweb.connector.Connector;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import com.activityweb.dao.common.RecordDao;
 import com.activityweb.entity.Record;
 
@@ -67,6 +69,27 @@ public class RecordDaoImpl implements RecordDao {
 
 	public void setRecord(Record record) {
 		this.record = record;
+		
+	}
+	
+	public int setRecordIntoDB(Record record){
+        try {
+			PreparedStatement stat=getConnection().prepareStatement("INSERT INTO RECORDS (ID,USERID,IO,AMOUNT,OCCURENCE,NOTE) VALUES(?,?,?,?,?,?) ");
+			stat.setInt( 1,Integer.parseInt(record.getId()) ); 
+			stat.setInt( 2,Integer.parseInt(record.getUserId()) );
+			stat.setInt(3,record.getIo());
+			stat.setDouble(4,record.getAmount());
+			stat.setDate(5, (Date) record.getOccurence() );   
+			stat.setString(6,record.getNote());
+			
+			ResultSet SQLres=stat.executeQuery();
+			stat.close();
+			SQLres.close();
+			return 0;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return -1;
+		}
 	}
 
 }
