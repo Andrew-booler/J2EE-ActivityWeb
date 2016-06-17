@@ -12,11 +12,7 @@
       	</li>
         <li><a href="index.action">主页</a>
         </li>
-        <li>我的记账本
-        	<ul>
-        		<li><a href=""
-        	</ul>
-        </li>
+
         <li><a href="contact.jsp">Contact Us</a></li>
       </ul>
     </div>
